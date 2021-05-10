@@ -7,7 +7,9 @@
     header("Access-Control-Max-Age: 3600");
     header("Access-Control-Allow-Headers: *");
 
-    $api = new \Api\registration();
+    require_once('insert.php');
+
+    $api = new \ApiInsert\insert();
  
     $ret = array();
 

@@ -11,7 +11,7 @@ $db = 'cintorin';
 
 $ret = array ();
 $conn = new mysqli ('localhost',$user,$pass,$db) or die("nejde");
-$sql = "SELECT `id`, `Meno`, `Priezvisko`, `Narodenie`, `Umrtie`, `ZaplateneDo`, `Suradnice` FROM `cintorin`";
+$sql = "SELECT `id`, `Meno`, `Priezvisko`, `Narodenie`, `Umrtie`, `ZaplateneDo`, `sur1`, `sur2`,`sur3`, `sur4` FROM `cintorin`";
 $result = mysqli_query($conn, $sql);
   
 if (mysqli_num_rows($result) > 0) {
@@ -37,7 +37,10 @@ if($result = mysqli_query($con,$sql))
     $reg[$i]['Narodenie'] = $row['Narodenie'];
     $reg[$i]['Umrtie'] = $row['Umrtie'];
     $reg[$i]['ZaplateneDo'] = $row['ZaplateneDo'];
-    $reg[$i]['Suradnice'] = $row['Suradnice'];
+    $reg[$i]['sur1'] = $row['sur1'];
+    $reg[$i]['sur2'] = $row['sur2'];
+    $reg[$i]['sur3'] = $row['sur3'];
+    $reg[$i]['sur4'] = $row['sur4'];
     $i++;
   }
 

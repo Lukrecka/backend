@@ -1,6 +1,6 @@
 <?php
 
-
+/*
 namespace Api;
 require "database.php";
 
@@ -9,10 +9,10 @@ class login
     private $conn;
     //private $sql_log = "SELECT * FROM registration ";
     //private $sql_register = "INSERT INTO registration (firstname, lastname, username, password, email, number) VALUES (?, ?, ?, ?, ?, ?)";
-    private $sql_checkRegistered = "SELECT * FROM registration  WHERE username = ? ";
+    private $sql_checkRegistered = "SELECT * FROM users  WHERE email = ? ";
 
     function __construct() {
-        $this->conn = new \mysqli('localhost', 'root', '', 'cintorin');
+        $this->conn = new \mysqli('localhost', 'root', '', 'cemetary');
 
 
         if ($this->conn->error) {
@@ -22,7 +22,7 @@ class login
 
     function loginUser($n) {
         $req = $this->conn->prepare($this->sql_checkRegistered);
-        $req->bind_param('ss', $n->username);
+        $req->bind_param('ss', $n->email);
         $req->execute();
 
         $response = $req->get_result();
@@ -45,6 +45,6 @@ class login
         //return 1;
     }
 }
-
+*/
 
 ?>
