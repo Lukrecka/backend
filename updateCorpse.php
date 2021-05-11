@@ -19,8 +19,7 @@ if(isset($postdata) && !empty($postdata))
   //$id    = mysqli_real_escape_string($con, (int)$request->id_corpse);
 
   // Update.
-  $sql = "UPDATE `corpses` SET `id_grave`= '$request->id_grave',`name`= '$request->name',`lastname`= '$request->lastname',`birthDay`= '$request->birthDay',`deadDay`= '$request->deadDay',`paidBy`= '$request->paidBy' WHERE `id_corpse` = '{$request->id_corpse}' LIMIT 1";
-
+  $sql ="UPDATE `corpses` SET `id_grave`= '$request->id_grave' ,`name`= '$request->name' ,`lastname`= '$request->lastname' ,`birthDay`= '$request->birthDay' ,`deadDay`= '$request->deadDay',`paidBy`= '$request->paidBy'  WHERE  `id_corpse` = '{$request->id_corpse}' LIMIT 1";
   if(mysqli_query($con, $sql))
   {
     http_response_code(204);

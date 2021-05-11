@@ -11,10 +11,13 @@ $db = 'cemetary';
 
 $ret = array ();
 $conn = new mysqli ('localhost',$user,$pass,$db) or die("nejde");
+//$sql = "SELECT corpses.name as name, corpses.lastname as lastname, corpses.birthDay as birth, corpses.deadDay as dead, corpses.paidBy as paidBy, corpses.id_corpse as id_corpse,
+ //       cemetery.id_grave as id_grave, cemetery.coor1 as coor1, cemetery.coor2 as coor2, cemetery.coor3 as coor3, cemetery.coor4 as coor4
+//        FROM corpses, cemetery
+//        WHERE corpses.id_grave = cemetery.id_grave";
 $sql = "SELECT corpses.name as name, corpses.lastname as lastname, corpses.birthDay as birth, corpses.deadDay as dead, corpses.paidBy as paidBy, corpses.id_corpse as id_corpse,
-        cemetery.id_grave as id_grave, cemetery.coor1 as coor1, cemetery.coor2 as coor2, cemetery.coor3 as coor3, cemetery.coor4 as coor4
-        FROM corpses, cemetery
-        WHERE corpses.id_grave = cemetery.id_grave";
+cemetery.id_grave as id_grave, cemetery.coor1 as coor1, cemetery.coor2 as coor2, cemetery.coor3 as coor3, cemetery.coor4 as coor4
+FROM  cemetery LEFT JOIN corpses ON  corpses.id_grave = cemetery.id_grave";
 $result = mysqli_query($conn, $sql);
   
 if (mysqli_num_rows($result) > 0) {
