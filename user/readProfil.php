@@ -8,9 +8,11 @@ $user = 'root';
 $pass = '';
 $db = 'cemetary';
 
+$id = $_GET['id'];
 $res = array ();
 $conn = new mysqli ('localhost',$user,$pass,$db) or die("nejde");
-$sqlUsers = "SELECT id_user, id_grave, name, lastname, number, email, password FROM users";
+$sqlUsers = "SELECT `id_user`, `id_grave`, `name`, `lastname`, `number`, `email`, `password`, `town`, `street`, `number_house`, `postcode` FROM users WHERE `id_user` = '{$id}' ";
+
 
 $result = mysqli_query($conn, $sqlUsers);
 
@@ -37,6 +39,10 @@ if($result = mysqli_query($con,$sql))
     $res[$i]['number'] = $row['number'];
     $res[$i]['email'] = $row['email'];
     $res[$i]['password'] = $row['password'];
+    $res[$i]['town'] = $row['town'];
+    $res[$i]['street'] = $row['street'];
+    $res[$i]['number_house'] = $row['number_house'];
+    $res[$i]['postcode'] = $row['postcode'];
     $i++;
   }
 

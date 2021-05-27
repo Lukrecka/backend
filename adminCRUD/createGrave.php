@@ -17,8 +17,8 @@ if(isset($postdata) && !empty($postdata))
   $type = $request->type ;
 
   // Store.
-  $sql = "INSERT INTO `cemetery`(`id_grave`, `coor1`, `coor2`, `coor3`, `coor4`, `type`)
-          VALUES ('{$id_grave}','{$coor1}','{$coor2}','{$coor3}','{$coor4}','{$type}')";
+  $sql = "INSERT INTO `cemetery`(`id_grave`, `id_user`, `coor1`, `coor2`, `coor3`, `coor4`, `type`)
+          VALUES ('{$id_grave}', 0,'{$coor1}','{$coor2}','{$coor3}','{$coor4}','{$type}')";
 
   if(mysqli_query($con,$sql))
   {

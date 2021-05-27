@@ -7,7 +7,7 @@ $id = $_GET['id'];
 
 $ret = array ();
 $sql = "SELECT payment.paidDay AS 'paidDay', payment.type AS 'type'
-        FROM payment LEFT JOIN users ON users.id_grave = payment.id_grave WHERE users.id_user ='{$id}' ";
+        FROM payment LEFT JOIN users ON users.id_user = payment.id_user WHERE users.id_user ='{$id}' ";
 $result = mysqli_query($con, $sql);
 
 if (mysqli_num_rows($result) > 0) {

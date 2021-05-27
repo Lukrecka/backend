@@ -6,7 +6,7 @@ require 'database.php';
 $id = $_GET['id'];
 
 $ret = array ();
-$sql = "SELECT cemetery.id_grave as id_grave , cemetery.type as 'type' FROM cemetery LEFT JOIN users ON users.id_grave = cemetery.id_grave WHERE users.id_user ='{$id}' ";
+$sql = "SELECT cemetery.id_grave as id_grave , cemetery.type as 'type' FROM cemetery LEFT JOIN users ON users.id_user = cemetery.id_user WHERE users.id_user ='{$id}' ";
 $result = mysqli_query($con, $sql);
 
 if (mysqli_num_rows($result) > 0) {

@@ -6,7 +6,8 @@ require "database.php";
 class registration
 {
     private $conn;
-    private $sql_register = "INSERT INTO users (id_user, id_grave, name, lastname, number, email, password) VALUES (UUID(), 0, ?, ?, ?, ?, ?)";
+    private $sql_register = "INSERT INTO users (`id_user`, `id_grave`, `name`, `lastname`, `number`, `email`, `password`, `town`, `street`, `number_house`, `postcode`) 
+                                VALUES (UUID(), 0, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private $sql_checkRegistered = "SELECT * FROM users  WHERE email = ?";
 
     function __construct() {
@@ -29,7 +30,7 @@ class registration
         }
 
         $req = $this->conn->prepare($this->sql_register);
-        $req->bind_param('sssss', $n->name, $n->lastname, $n->number, $n->email, password_hash($n->password, PASSWORD_DEFAULT));
+        $req->bind_param('sssssssss', $n->name, $n->lastname, $n->number, $n->email, password_hash($n->password, PASSWORD_DEFAULT), $n->town, $n->street, $n->number_house, $n->postcode);
         $req->execute();
 
         return 1;

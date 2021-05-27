@@ -15,16 +15,17 @@ if(isset($postdata) && !empty($postdata))
   $birthDay = $request->birthDay;
   $deadDay = $request-> deadDay;
   $paidDay = $request->paidDay ;
+  $id_corpse = UUID();
 
   // Store.
   $sql = "INSERT INTO `corpses`(`id_corpse`, `id_grave`, `name`, `lastname`, `birthDay`, `deadDay`, `paidBy`)
-   VALUES (UUID(),'{$id_grave}','{$name}','{$lastname}','{$birthDay}','{$deadDay}','{$paidDay}')";
+   VALUES ('{$id_corpse}','{$id_grave}','{$name}','{$lastname}','{$birthDay}','{$deadDay}','{$paidDay}')";
 
   if(mysqli_query($con,$sql))
   {
     http_response_code(201);
     $sorpse = [
-      'id_corpse' =>  mysqli_insert_id($con),
+      'id_corpse' => $id_corpse ,
       'id_grave' => $id_grave,
       'name' => $name,
       'lastname' => $lastname,

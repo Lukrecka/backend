@@ -18,7 +18,8 @@ if(isset($postdata) && !empty($postdata))
 
 
   // Update.
-  $sql = "UPDATE `users` SET `id_grave`= '$request->id_grave' ,`name`= '$request->name',`lastname`= '$request->lastname',`number` = '$request->number',`email`= '$request->email' ,`password`= '$request->password'  WHERE `id_user` = '{$request->id_user}' LIMIT 1";
+  $sql = "UPDATE `users` SET `id_grave`= '$request->id_grave' ,`name`= '$request->name',`lastname`= '$request->lastname',`number` = '$request->number',`email`= '$request->email' ,`password`= '$request->password' ,
+  `town`= '$request->town', `street` = '$request->street', `number_house` = '$request->number_house', `postcode` = '$request->postcode' WHERE `id_user` = '{$request->id_user}' LIMIT 1";
 
   if(mysqli_query($con, $sql))
   {
