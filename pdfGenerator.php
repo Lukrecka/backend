@@ -74,9 +74,9 @@ class pdfGenerator {
         $this->filename = $file ."_". uniqid() .".pdf"; 
     }
 
-   // public function __destruct(){
-     //   $this->deletePdf();
-   // }
+    public function __destruct(){
+        $this->deletePdf();
+    }
 
     public function prefill($replace_dict) {
         $place_holders = array();
@@ -106,13 +106,13 @@ class pdfGenerator {
         $pdf = new Pdf($this->file);
         $pdf->send();
     }
-/*
+
     private function deletePdf(){
         $path = $_SERVER['DOCUMENT_ROOT'] ."/". $this->dir . "/" . $this->filename; 
         unlink($path);
         echo $path;
     }
-    */
+    
 } 
 
 use PHPMailer\PHPMailer\PHPMailer;
@@ -151,4 +151,5 @@ try {
 } catch (Exception $e) {
     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 }
+
 ?>
