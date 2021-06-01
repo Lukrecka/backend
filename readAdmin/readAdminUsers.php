@@ -10,7 +10,7 @@ $db = 'cemetary';
 
 $res = array ();
 $conn = new mysqli ('localhost',$user,$pass,$db) or die("nejde");
-$sqlUsers = "SELECT `id_user`, `id_grave`, `name`, `lastname`, `number`, `email`, `password`, `town`, `street`, `number_house`, `postcode` FROM users";
+$sqlUsers = "SELECT `id_user`, `name`, `lastname`, `number`, `email`, `password`, `town`, `street`, `number_house`, `postcode` FROM users";
 
 
 $result = mysqli_query($conn, $sqlUsers);

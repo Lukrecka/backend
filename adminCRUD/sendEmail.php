@@ -10,8 +10,8 @@ ini_set("smtp_port","587");
 ini_set("sendmail_from","lukrecia.szilvasiova13@gmail.com");
 ini_set("sendmail_path", "C:\wamp\bin\sendmail.exe -t");
 //$to = 'jakubsip52@gmail.com';
-$to = 'bakalarka.test@gmail.com'
-$subject = 'Andžular';
+$to = 'bakalarka.test@gmail.com';
+$subject = 'Priponenutie vypršania nájomnej zmluvy';
 $from = 'lukrecia.szilvasiova13@gmail.com';
  
 // To send HTML mail, the Content-type header must be set
@@ -25,30 +25,12 @@ $headers .= 'From: '.$from."\r\n".
  
 // Compose a simple HTML email message
 $message = '<html><body>';
-$message .= '<h1 style="color:#0000ff;">Zadanie</h1>';
-$message .= '<h4 style="color:#ff3399;font-size:18px;">Platobná brána </h4>';
-$message .= '<h2 style="color:#f40;font-size:18px;">Podklady nie sú</h2>';
+$message .= '<p>Dobrý deň,</p>';
+$message .= '<p>Touto cestou by som Vám rád pripomenul, že Vám o nedlho končí platnosť nájomnej zmuvy. Predĺžiť si ju môžete online pomocou vášho profilu na stránke alebo priamo u správcu cintorína. </p>';
+$message .= '<p>Prajem pekný zvyšok dňa.</p>';
 $message .= '</body></html>';
  
-// Sending email
-if(mail($to, $subject, $message, $headers)){
-    echo 'Your mail has been sent successfully.';
-} else{
-    echo 'Unable to send email. Please try again.';
-}
-/*
-$to = "bakalarka.test@gmail.com ";
-$subject = "BLOKI";
-//$message = "Ide to aj cez angular";
-$headers = "From: lukrecia.szilvasiova13@gmail.com";
-$message = '<html><body>';
-$message .= '<h1 style="color:#f40;">Hi Jane!</h1>';
-$message .= '<p style="color:#080;font-size:18px;">Will you marry me?</p>';
-$message .= '</body></html>';
-if(mail($to, $subject,$message, $headers)){
-    echo" ide";
-}
-else{ echo "nejde";}
+
 
 //$datenow = date("Y-m-d");
 $date30 = new DateTime();
@@ -61,13 +43,14 @@ echo $date30->getTimestamp();;
 
 $user = 'root';
 $pass = '';
-$db = 'cintorin';
+$db = 'cemetary';
 
 $conn = new mysqli ('localhost',$user,$pass,$db) or die("nejde");
-$sql = "SELECT cintorin.ZaplateneDo as zaplateneDo, cintorin.id as id_hrob_cint, registration.firstname as meno, registration.lastname as priezvisko, registration.email as email,
-    registration.hrob_id as id_hrob_reg, registration.id as id_kupujuceho
-        FROM cintorin, registration
-        where cintorin.id = registration.hrob_id";
+$sql = "SELECT users.email AS email, corpses.paidBy AS paidBy, corpses.id_grave as id_grave
+FROM users, corpses
+LEFT JOIN cemetery ON cemetery.id_grave = corpses.id_grave
+WHERE users.id_user = cemetery.id_user and users.id_user !=0";
+
 $result = mysqli_query($conn, $sql);
   
 $info = [];
@@ -79,22 +62,16 @@ $info = [];
      // echo strtotime($row['zaplateneDo']);
     //$interval = date_diff($datenow, $row['zaplateneDo']);
     //echo $interval;
-    if($date30->getTimestamp() >  strtotime($row['zaplateneDo']) ){
-        echo "ide IF";
-        
+    if($date30->getTimestamp() >  strtotime($row['paidBy']) ){        
         if(mail($row['email'], $subject,$message, $headers)){
-            echo" ide";
+            echo $row['email'];
         }
         else{ echo "nejde";}
         
     }
-    $info[$i]['zaplateneDo'] = $row['zaplateneDo'];
-    $info[$i]['id_hrob_cint'] = $row['id_hrob_cint'];
-    $info[$i]['meno'] = $row['meno'];
-    $info[$i]['priezvisko'] = $row['priezvisko'];
     $info[$i]['email'] = $row['email'];
-    $info[$i]['id_hrob_reg'] = $row['id_hrob_reg'];
-    $info[$i]['id_kupujuceho'] = $row['id_kupujuceho'];
+    $info[$i]['paidBy'] = $row['paidBy'];
+    $info[$i]['id_grave'] = $row['id_grave'];
     $i++;
   }
 
@@ -106,5 +83,5 @@ else
 }
 
 //echo $tomorrow = date("Y-m-d", time() + 2592000);
-*/
+
 ?>

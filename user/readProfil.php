@@ -11,7 +11,7 @@ $db = 'cemetary';
 $id = $_GET['id'];
 $res = array ();
 $conn = new mysqli ('localhost',$user,$pass,$db) or die("nejde");
-$sqlUsers = "SELECT `id_user`, `id_grave`, `name`, `lastname`, `number`, `email`, `password`, `town`, `street`, `number_house`, `postcode` FROM users WHERE `id_user` = '{$id}' ";
+$sqlUsers = "SELECT `id_user`,  `name`, `lastname`, `number`, `email`, `password`, `town`, `street`, `number_house`, `postcode` FROM users WHERE `id_user` = '{$id}' ";
 
 
 $result = mysqli_query($conn, $sqlUsers);
@@ -33,7 +33,6 @@ if($result = mysqli_query($con,$sql))
   while($row = mysqli_fetch_assoc($result))
   {
     $res[$i]['id_user'] = $row['id_user'];
-    $res[$i]['id_grave'] = $row['id_grave'];
     $res[$i]['name'] = $row['name'];
     $res[$i]['lastname'] = $row['lastname'];
     $res[$i]['number'] = $row['number'];

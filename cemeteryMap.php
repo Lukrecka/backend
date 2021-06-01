@@ -16,7 +16,7 @@ $conn = new mysqli ('localhost',$user,$pass,$db) or die("nejde");
 //        FROM corpses, cemetery
 //        WHERE corpses.id_grave = cemetery.id_grave";
 $sql = "SELECT corpses.name as name, corpses.lastname as lastname, corpses.birthDay as birth, corpses.deadDay as dead, corpses.paidBy as paidBy, corpses.id_corpse as id_corpse,
-cemetery.id_grave as id_grave, cemetery.coor1 as coor1, cemetery.coor2 as coor2, cemetery.coor3 as coor3, cemetery.coor4 as coor4
+cemetery.id_grave as id_grave, cemetery.id_user as id_user, cemetery.coor1 as coor1, cemetery.coor2 as coor2, cemetery.coor3 as coor3, cemetery.coor4 as coor4
 FROM  cemetery LEFT JOIN corpses ON  corpses.id_grave = cemetery.id_grave";
 $result = mysqli_query($conn, $sql);
   
@@ -34,6 +34,7 @@ if($result = mysqli_query($con,$sql))
   $i = 0;
   while($row = mysqli_fetch_assoc($result))
   {
+    $info[$i]['id_grave'] = $row['id_user'];
     $info[$i]['id_grave'] = $row['id_grave'];
     $info[$i]['id_corpse'] = $row['id_corpse'];
     $info[$i]['name'] = $row['name'];
