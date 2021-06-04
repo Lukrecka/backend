@@ -6,8 +6,7 @@ require 'database.php';
 $id = $_GET['id'];
 
 $ret = array ();
-$sql = "SELECT corpses.name AS 'name', corpses.lastname AS lastname, corpses.birthDay as birthDay, corpses.deadDay AS deadDay, corpses.paidBy as paidBy
-        FROM corpses LEFT JOIN users ON users.id_grave = corpses.id_grave WHERE users.id_user ='{$id}' ";
+$sql = "SELECT * FROM corpses JOIN cemetery ON cemetery.id_grave = corpses.id_grave JOIN users ON users.id_user = cemetery.id_user WHERE users.id_user = '{$id}' ";
 $result = mysqli_query($con, $sql);
 
 if (mysqli_num_rows($result) > 0) {

@@ -127,8 +127,8 @@ try {
     $mail->isSMTP();    
     $mail->Host       = 'smtp.gmail.com';  
     $mail->SMTPAuth   = true;    
-    $mail->Username   = 'lukrecia.szilvasiova13@gmail.com';  
-    $mail->Password   = 'gulka.2441998';     
+    $mail->Username   = 'bakalarka.test@gmail.com';  
+    $mail->Password   = 'Bakalarka.test1';     
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; 
     $mail->Port       = 587;  
 

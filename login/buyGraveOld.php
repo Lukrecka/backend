@@ -28,7 +28,7 @@ if(isset($postdata) && !empty($postdata))
   if(mysqli_query($con,$updateCorpse))
   {
     http_response_code(201);
-    
+    /*
     $corpse = [
       'id_grave' => $id_grave,
       'name' => 'nic',
@@ -37,14 +37,13 @@ if(isset($postdata) && !empty($postdata))
       'deadDay' =>0000-00-00,
       'paidDay'    => $paidDay
     ]; 
-    echo json_encode($corpse); 
+    echo json_encode($corpse); */
   }
   else
   {
     http_response_code(422);
   }
  
-/*
 
   //CREATE new payment 
   $sqlInsertPayment = "INSERT INTO `payment`(`id_user`, `id_grave`, `paidDay`, `type`)
@@ -68,7 +67,7 @@ else
   http_response_code(422);
 }
 
-*/
+
 }
 
 

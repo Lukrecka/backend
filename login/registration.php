@@ -30,7 +30,7 @@ class registration
         }
 
         $req = $this->conn->prepare($this->sql_register);
-        $req->bind_param('ssssssss', $n->name, $n->lastname, $n->number,  password_hash($n->password, PASSWORD_DEFAULT), $n->town, $n->street, $n->number_house, $n->postcode);
+        $req->bind_param('sssssssss', $n->name,  $n->lastname, $n->number, $n->email,  password_hash($n->password, PASSWORD_DEFAULT), $n->town, $n->street, $n->number_house, $n->postcode);
         $req->execute();
 
         return 1;
